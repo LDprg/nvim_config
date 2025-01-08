@@ -56,9 +56,8 @@ return {
                     })
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
-
                 end,
-                ["lua_ls"] = function()
+                lua_ls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
                         capabilities = capabilities,
@@ -98,7 +97,7 @@ return {
         })
 
         vim.diagnostic.config({
-            -- update_in_insert = true,
+            update_in_insert = true,
             float = {
                 focusable = false,
                 style = "minimal",

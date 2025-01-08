@@ -13,8 +13,20 @@ return {
                 api.config.mappings.default_on_attach(bufnr)
 
                 -- custom mappings
+                vim.keymap.set("n", "<leader>pv", function() api.tree.open({ current_window = true }) end, { noremap = true })
                 vim.keymap.set("n", "?", api.tree.toggle_help, opts('Help'))
             end,
+            view = {
+                number = true,
+            },
+            filters = {
+                dotfiles = false,
+            },
+            actions = {
+                open_file = {
+                    quit_on_open = true,
+                },
+            },
         }
     end,
 }

@@ -1,5 +1,9 @@
+vim.g.have_nerd_font = true
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
+
+vim.opt.showmode = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

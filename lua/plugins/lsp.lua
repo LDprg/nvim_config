@@ -73,7 +73,7 @@ return {
                                     symbol = {
                                         search = {
                                             kind = "all_symbols",
-                                            scope = "workspace_and_dependencies",
+                                            -- scope = "workspace_and_dependencies",
                                         }
                                     }
                                 },

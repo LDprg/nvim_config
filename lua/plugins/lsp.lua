@@ -60,6 +60,30 @@ return {
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
                 end,
+                ["rust_analyzer"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.rust_analyzer.setup({
+                        root_dir = lspconfig.util.root_pattern('Cargo.toml'),
+                        settings = {
+                            ["rust-analyzer"] = {
+                                cargo = {
+                                    features = "all",
+                                },
+                                procMacro = {
+                                    enable = true
+                                },
+                                workspace = {
+                                    symbol = {
+                                        search = {
+                                            kind = "all_symbols",
+                                            scope = "workspace_and_dependencies",
+                                        }
+                                    }
+                                },
+                            }
+                        },
+                    })
+                end,
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {

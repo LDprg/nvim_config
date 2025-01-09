@@ -21,6 +21,9 @@ return {
             view = {
                 number = true,
             },
+            renderer = {
+                group_empty = true,
+            },
             filters = {
                 dotfiles = false,
             },

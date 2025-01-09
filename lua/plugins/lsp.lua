@@ -69,9 +69,6 @@ return {
                                 cargo = {
                                     features = "all",
                                 },
-                                procMacro = {
-                                    enable = true
-                                },
                                 workspace = {
                                     symbol = {
                                         search = {

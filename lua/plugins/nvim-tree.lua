@@ -36,6 +36,6 @@ return {
                 },
             },
         }
-        vim.keymap.set("n", "<leader>pv", function() api.tree.open({ current_window = true }) end, { noremap = true })
+        vim.keymap.set("n", "<leader>pv", function() api.tree.open({ current_window = true }) end, { desc="NvimTree open", noremap = true })
     end,
 }

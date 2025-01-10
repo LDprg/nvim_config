@@ -20,7 +20,23 @@ return {
     config = function()
         require("conform").setup({
             formatters_by_ft = {
-            }
+                javascript = { "prettier" },
+                typescript = { "prettier" },
+                javascriptreact = { "prettier" },
+                typescriptreact = { "prettier" },
+                svelte = { "prettier" },
+                css = { "prettier" },
+                html = { "prettier" },
+                json = { "prettier" },
+                yaml = { "prettier" },
+                markdown = { "prettier" },
+                graphql = { "prettier" },
+            },
+            format_on_save = {
+                -- These options will be passed to conform.format()
+                timeout_ms = 500,
+                lsp_format = "fallback",
+            },
         })
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
@@ -133,7 +149,7 @@ return {
         })
 
         local cspell = require('cspell')
-        local null_ls = require 'null-ls'
+        local null_ls = require('null-ls')
         null_ls.setup {
             sources = {
                 cspell.diagnostics,

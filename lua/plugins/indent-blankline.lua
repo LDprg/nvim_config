@@ -4,6 +4,9 @@ return {
     ---@module "ibl"
     ---@type ibl.config
     opts = {
+        exclude = {
+            filetypes = { 'dashboard' },
+        },
         indent = { char = "│" },
         scope = { enabled = false },
     },

@@ -13,7 +13,10 @@ return {
         telescope.setup({
             defaults = {
                 mappings = {
-                    i = { ["<C-t>"] = open_with_trouble },
+                    i = {
+                        ["<C-t>"] = open_with_trouble,
+                        ["<C-h>"] = "which_key",
+                    },
                     n = { ["<C-t>"] = open_with_trouble },
                 },
             },

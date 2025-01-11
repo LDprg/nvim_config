@@ -27,11 +27,6 @@ return {
                     prompt_title = '[ Find Directories ]',
                     mappings = {
                         default = {
-                            after_action = function(selection)
-                                print('(' .. selection.z_score .. ') ' .. selection.path)
-                            end
-                        },
-                        ['<cr>'] = {
                             action = function(selection)
                                 vim.cmd.edit(selection.path)
                             end,

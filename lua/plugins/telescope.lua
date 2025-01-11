@@ -52,6 +52,6 @@ return {
         vim.keymap.set('n', '<leader>pt', builtin.diagnostics, { desc = 'Telescope diagnostics' })
         vim.keymap.set('n', '<leader>ph', builtin.help_tags, { desc = 'Telescope help tags' })
 
-        vim.keymap.set('n', '<leader>pv', telescope.extensions.zoxide.list, { desc = 'Telescope zoxide' })
+        vim.keymap.set('n', '<leader>pe', telescope.extensions.zoxide.list, { desc = 'Telescope zoxide' })
     end
 }

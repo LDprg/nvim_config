@@ -8,7 +8,6 @@ vim.opt.relativenumber = true
 
 vim.opt.showmode = false
 
-vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 
 vim.opt.tabstop = 4

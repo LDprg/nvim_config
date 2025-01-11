@@ -1,20 +1,14 @@
 return {
     "nvim-tree/nvim-tree.lua",
     dependencies = {
-        {
-            'b0o/nvim-tree-preview.lua',
-            dependencies = {
-                'nvim-lua/plenary.nvim',
-                '3rd/image.nvim', -- Optional, for previewing images
-            },
-        },
+        "JMarkin/nvim-tree.lua-float-preview",
     },
     config = function()
         local api = require "nvim-tree.api"
         require("nvim-tree").setup {
             on_attach = function(bufnr)
                 local function opts(desc)
-                    return { desc = "NvimTree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+                    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
 
                 -- default mappings
@@ -25,34 +19,46 @@ return {
                 vim.keymap.set("n", "+", api.tree.change_root_to_node, opts('CD'))
                 vim.keymap.set("n", "?", api.tree.toggle_help, opts('Help'))
 
-                local preview = require('nvim-tree-preview')
-
-                preview.setup {
-                    image_preview = {
-                        enable = true, -- Whether to preview images (for more info see Previewing Images section in README)
-                        patterns = {   -- List of Lua patterns matching image file names
-                            '.*%.png$',
-                            '.*%.jpg$',
-                            '.*%.jpeg$',
-                            '.*%.gif$',
-                            '.*%.webp$',
-                            '.*%.avif$',
-                            -- Additional patterns:
-                            '.*%.svg$',
-                            '.*%.bmp$',
-                            -- '.*%.pdf$', (known to have issues)
-                        },
-                    },
-                }
-
-                vim.keymap.set('n', 'P', preview.watch, opts 'Preview (Watch)')
-                vim.keymap.set('n', '<Esc>', preview.unwatch, opts 'Close Preview/Unwatch')
-                vim.keymap.set('n', '<C-u>', function() return preview.scroll(-4) end, opts 'Scroll Up')
-                vim.keymap.set('n', '<C-d>', function() return preview.scroll(4) end, opts 'Scroll Down')
-
                 vim.keymap.set('n', '<Tab>', function()
-                    preview.node_under_cursor({ toggle_focus = false })
-                end, opts 'Preview')
+                    local ok, node = pcall(api.tree.get_node_under_cursor)
+                    if ok and node then
+                        if node.type == 'directory' then
+                            api.node.open.edit()
+                        end
+                    end
+                end, opts 'Expand directory')
+
+                local preview = require('float-preview')
+
+                HEIGHT_PADDING = 2
+                WIDTH_PADDING = 2
+                preview.setup({
+                    window = {
+                        wrap = false,
+                        trim_height = false,
+                        open_win_config = function()
+                            local screen_w = vim.opt.columns:get()
+                            local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+                            local window_w_f = (screen_w - WIDTH_PADDING * 2 - 1) / 2
+                            local window_w = math.floor(window_w_f)
+                            local window_h = screen_h - HEIGHT_PADDING * 2
+                            local center_x = window_w_f + WIDTH_PADDING + 2
+                            local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
+
+                            return {
+                                style = "minimal",
+                                relative = "editor",
+                                border = "single",
+                                row = center_y,
+                                col = center_x,
+                                width = window_w,
+                                height = window_h
+                            }
+                        end
+                    }
+                })
+
+                preview.attach_nvimtree(bufnr)
             end,
             hijack_cursor = true,
             view = {

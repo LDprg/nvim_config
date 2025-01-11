@@ -6,21 +6,46 @@ return {
     },
 
     config = function()
+        local telescope = require('telescope')
         local open_with_trouble = require("trouble.sources.telescope").open
-
-        local telescope = require("telescope")
 
         telescope.setup({
             defaults = {
                 mappings = {
                     i = {
                         ["<C-t>"] = open_with_trouble,
-                        ["<C-h>"] = "which_key",
+                        ['<C-h>'] = 'which_key',
                     },
-                    n = { ["<C-t>"] = open_with_trouble },
+                    n = {
+                        ["<C-t>"] = open_with_trouble,
+                        ['<C-h>'] = 'which_key',
+                    },
                 },
             },
+            extensions = {
+                zoxide = {
+                    prompt_title = '[ Find Directories ]',
+                    mappings = {
+                        default = {
+                            after_action = function(selection)
+                                print('(' .. selection.z_score .. ') ' .. selection.path)
+                            end
+                        },
+                        ['<cr>'] = {
+                            action = function(selection)
+                                vim.cmd.edit(selection.path)
+                            end,
+                            after_action = function(selection)
+                                print('(' .. selection.z_score .. ') ' .. selection.path)
+                            end,
+                        },
+                    },
+                }
+            }
         })
+
+        telescope.load_extension('zoxide')
+
         local builtin = require('telescope.builtin')
 
         vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Telescope git files' })
@@ -31,5 +56,7 @@ return {
         vim.keymap.set('n', '<leader>pq', builtin.lsp_workspace_symbols, { desc = 'Telescope workspace symbols' })
         vim.keymap.set('n', '<leader>pt', builtin.diagnostics, { desc = 'Telescope diagnostics' })
         vim.keymap.set('n', '<leader>ph', builtin.help_tags, { desc = 'Telescope help tags' })
+
+        vim.keymap.set('n', '<leader>pv', telescope.extensions.zoxide.list, { desc = 'Telescope zoxide' })
     end
 }

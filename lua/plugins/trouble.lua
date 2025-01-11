@@ -6,7 +6,7 @@ return {
     cmd = "Trouble",
     keys = {
         {
-            "<leader>tt",
+            "<leader>tT",
             "<cmd>Trouble diagnostics toggle<cr>",
             desc = "Trouble diagnostics",
         },
@@ -31,7 +31,7 @@ return {
             desc = "Trouble lsp definitions / references / ...",
         },
         {
-            "tt",
+            "<leader>tt",
             "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
             desc = "Trouble buffer diagnostics",
         }

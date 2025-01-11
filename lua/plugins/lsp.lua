@@ -4,8 +4,6 @@ return {
         "stevearc/conform.nvim",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "jay-babu/mason-null-ls.nvim",
-        "nvimtools/none-ls.nvim",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -14,7 +12,6 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
-        "davidmh/cspell.nvim",
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -135,26 +132,6 @@ return {
                 header = "",
                 prefix = "",
             },
-        })
-
-        local cspell = require('cspell')
-        local null_ls = require('null-ls')
-        null_ls.setup {
-            sources = {
-                cspell.diagnostics,
-                cspell.code_actions,
-            },
-            diagnostic_config = {
-                underline = true,     -- Enable underlining of diagnostics
-                virtual_text = false, -- Disable virtual text (the in-line text showing the error)
-                signs = false,        -- Disable signs in the sign column
-            },
-            update_in_insert = true,
-        }
-
-        require("mason-null-ls").setup({
-            ensure_installed = { 'cspell' },
-            handlers = {},
         })
     end,
 }

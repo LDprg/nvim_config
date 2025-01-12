@@ -4,6 +4,7 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
+        "j-hui/fidget.nvim",
     },
     opts = {
         -- options for vim.diagnostic.config()
@@ -39,6 +40,7 @@ return {
         },
     },
     config = function(_, opts)
+        require("fidget").setup({})
         require("mason").setup({})
         require("mason-lspconfig").setup({
             ensure_installed = {
@@ -48,9 +50,7 @@ return {
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
+                    require("lspconfig")[server_name].setup {}
                 end,
 
                 ["zls"] = function()
@@ -87,11 +87,11 @@ return {
                                         }
                                     }
                                 },
+                                checkOnSave = {
+                                    enable = true,
+                                },
                                 diagnostics = {
                                     enable = true,
-                                    experimental = {
-                                        enable = true,
-                                    },
                                 },
                             }
                         },
@@ -100,7 +100,6 @@ return {
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
                         settings = {
                             Lua = {
                                 runtime = { version = "Lua 5.1" },

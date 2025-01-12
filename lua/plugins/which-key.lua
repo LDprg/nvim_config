@@ -3,7 +3,11 @@ return {
     event = "VeryLazy",
     opts = {
         preset = "modern",
-        triggers = {}
+        triggers = {},
+        keys = {
+            scroll_down = "<c-d>",
+            scroll_up = "<c-u>",
+        },
     },
     keys = {
         {

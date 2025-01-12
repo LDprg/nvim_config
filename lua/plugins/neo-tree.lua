@@ -33,7 +33,7 @@ return {
         },
         window = {
             position = "left",
-            width = "75%",
+            width = "50%",
         },
         default_component_configs = {
             indent = {
@@ -85,7 +85,7 @@ return {
                 handler = function()
                     local state = require('neo-tree.sources.manager').get_state('filesystem')
                     if not require('neo-tree.sources.common.preview').is_active() then
-                        state.config = { use_float = true, use_image_nvim = true }
+                        state.config = { use_float = false, use_image_nvim = true }
                         state.commands.toggle_preview(state)
                     end
                 end

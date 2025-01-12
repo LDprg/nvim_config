@@ -1,11 +1,11 @@
 return {
     "akinsho/bufferline.nvim",
-    event = "VeryLazy",
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+
     opts = {
         options = {
-            -- stylua: ignore
             close_command = function(n) Snacks.bufdelete(n) end,
-            -- stylua: ignore
             right_mouse_command = function(n) Snacks.bufdelete(n) end,
             diagnostics = "nvim_lsp",
             offsets = {

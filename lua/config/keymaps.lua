@@ -14,11 +14,11 @@ vim.keymap.set("n", "<M-k>", "<cmd>bprev<cr>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<M-j>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<M-w>", "<cmd>bdel<cr>", { desc = "Close buffer" })
 
-vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz", { desc = "Previous error" })
-vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz", { desc = "Next error" })
+vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz", { desc = "Previous error" })
+vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz", { desc = "Next error" })
 
-vim.keymap.set("n", "<leader>k", vim.diagnostic.goto_prev, { desc = "Next lsp error" })
-vim.keymap.set("n", "<leader>j", vim.diagnostic.goto_next, { desc = "Next lsp error" })
+vim.keymap.set("n", "<C-k>", vim.diagnostic.goto_prev, { desc = "Next lsp error" })
+vim.keymap.set("n", "<C-j>", vim.diagnostic.goto_next, { desc = "Next lsp error" })
 
 vim.keymap.set("n", "O", "o<esc>", { desc = "Insert empty line" })
 
@@ -32,3 +32,5 @@ end, { desc = "Lsp toggle inly hint" })
 vim.keymap.set("n", "<leader>d", vim.lsp.buf.code_action, { desc = "Lsp code action" })
 vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", { desc = "Lsp format" })
 vim.keymap.set("n", "<leader>r", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })
+
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", { desc = "Undotree open" })

@@ -5,8 +5,8 @@ return {
     event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
-        { "<c-space>", desc = "Increment Selection" },
-        { "<bs>",      desc = "Decrement Selection", mode = "x" },
+        { "<c-cr>", desc = "Increment Selection" },
+        { "<bs>",   desc = "Decrement Selection", mode = "x" },
     },
     opts = {
         highlight = {
@@ -18,8 +18,8 @@ return {
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = "<C-space>",
-                node_incremental = "<C-space>",
+                init_selection = "<C-cr>",
+                node_incremental = "<C-cr>",
                 scope_incremental = false,
                 node_decremental = "<bs>",
             },

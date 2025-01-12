@@ -11,10 +11,16 @@ return {
         diagnostics = {
             underline = true,
             update_in_insert = true,
-            virtual_text = {
-                spacing = 4,
-            },
             severity_sort = true,
+            float = {
+                focusable = false,
+                style = "minimal",
+                border = "rounded",
+                source = "always",
+                header = "",
+                prefix = "",
+            },
+
         },
         -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
         -- Be aware that you also will need to properly configure your LSP server to

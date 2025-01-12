@@ -32,5 +32,3 @@ end, { desc = "Lsp toggle inly hint" })
 vim.keymap.set("n", "<leader>d", vim.lsp.buf.code_action, { desc = "Lsp code action" })
 vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", { desc = "Lsp format" })
 vim.keymap.set("n", "<leader>r", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })
-
-vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", { desc = "Undotree open" })

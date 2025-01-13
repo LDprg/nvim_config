@@ -1,11 +1,10 @@
 return {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    "LDprg/neo-tree.nvim",
+    --branch = "v3.x",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
-        "3rd/image.nvim",
     },
     cmd = "Neotree",
     keys = {
@@ -20,8 +19,9 @@ return {
     opts = {
         sources = { "filesystem", "buffers", "git_status" },
         open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
+        close_if_last_window = true,
         filesystem = {
-            bind_to_cwd = false,
+            bind_to_cwd = true,
             use_libuv_file_watcher = true,
             group_empty_dirs = true,
             filtered_items = {
@@ -34,6 +34,10 @@ return {
         window = {
             position = "left",
             width = "50%",
+            mappings = {
+                ["<esc>"] = "close_window",
+                ["P"] = { "toggle_preview", config = { use_float = false } },
+            },
         },
         default_component_configs = {
             indent = {
@@ -48,8 +52,9 @@ return {
                     staged = "󰱒",
                 },
             },
-        },
-        event_handlers = {
+            symlink_target = {
+                enabled = true,
+            },
         },
     },
     init = function()
@@ -85,7 +90,7 @@ return {
                 handler = function()
                     local state = require('neo-tree.sources.manager').get_state('filesystem')
                     if not require('neo-tree.sources.common.preview').is_active() then
-                        state.config = { use_float = false, use_image_nvim = true }
+                        state.config = { use_float = false }
                         state.commands.toggle_preview(state)
                     end
                 end

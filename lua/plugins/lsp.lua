@@ -5,23 +5,13 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "j-hui/fidget.nvim",
+        {
+            'mrcjkb/rustaceanvim',
+            version = '^5', -- Recommended
+            lazy = false,   -- This plugin is already lazy
+        }
     },
     opts = {
-        -- options for vim.diagnostic.config()
-        diagnostics = {
-            underline = true,
-            update_in_insert = true,
-            severity_sort = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-
-        },
         -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
         -- Be aware that you also will need to properly configure your LSP server to
         -- provide the inlay hints.
@@ -45,7 +35,20 @@ return {
             },
         },
     },
-    config = function(_, opts)
+    config = function()
+        vim.diagnostic.config({
+            update_in_insert = true,
+            severity_sort = true,
+            float = {
+                focusable = false,
+                style = "minimal",
+                border = "rounded",
+                source = "always",
+                header = "",
+                prefix = "",
+            },
+        })
+
         require("fidget").setup({})
         require("mason").setup({})
         require("mason-lspconfig").setup({
@@ -74,35 +77,6 @@ return {
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
                 end,
-                ["rust_analyzer"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.rust_analyzer.setup({
-                        root_dir = lspconfig.util.root_pattern('Cargo.toml'),
-                        flags = {
-                            debounce_text_changes = 150
-                        },
-                        settings = {
-                            ["rust-analyzer"] = {
-                                cargo = {
-                                    features = "all",
-                                },
-                                workspace = {
-                                    symbol = {
-                                        search = {
-                                            kind = "all_symbols",
-                                        }
-                                    }
-                                },
-                                checkOnSave = {
-                                    enable = true,
-                                },
-                                diagnostics = {
-                                    enable = true,
-                                },
-                            }
-                        },
-                    })
-                end,
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
@@ -116,9 +90,62 @@ return {
                         }
                     }
                 end,
-            }
+                ["rust_analyzer"] = function()
+                end,
+            },
         })
 
-        vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+        if vim.g.use_bacon_lsp then
+            local lspconfig = require("lspconfig")
+            local configs = require("lspconfig.configs")
+            if not configs.bacon_ls then
+                configs.bacon_ls = {
+                    default_config = {
+                        cmd = { "bacon-ls" },
+                        -- root_dir = require("lspconfig").util.root_pattern('Cargo.toml'),
+                        root_dir = require("lspconfig").util.root_pattern('.git'),
+                        filetypes = { "rust" },
+                    },
+                }
+            end
+            lspconfig.bacon_ls.setup({
+                init_options = {
+                    updateOnSave = true,
+                    updateOnSaveWaitMillis = 1000,
+                    updateOnChange = true,
+                },
+                autostart = true
+            })
+        end
+
+        vim.g.rustaceanvim = {
+            server = {
+                root_dir = require("lspconfig").util.root_pattern('Cargo.toml'),
+                on_attach = function(_, bufnr)
+                    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                end,
+                settings = {
+                    -- rust-analyzer language server configuration
+                    ['rust-analyzer'] = {
+                        cargo = {
+                            features = "all",
+                        },
+                        workspace = {
+                            symbol = {
+                                search = {
+                                    kind = "all_symbols",
+                                }
+                            }
+                        },
+                        checkOnSave = {
+                            enable = vim.g.use_bacon_lsp == false,
+                        },
+                        diagnostics = {
+                            enable = vim.g.use_bacon_lsp == false,
+                        },
+                    },
+                },
+            },
+        }
     end,
 }

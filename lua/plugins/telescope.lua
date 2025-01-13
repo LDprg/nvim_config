@@ -73,11 +73,11 @@ return {
                         -- Dim parent directories
                         local tail = require("telescope.utils").path_tail(path)
                         local path_style = {
-                            { { 0, icon_width },                         icon_hl },
-                            { { icon_width, #transformed_path - #tail }, "Comment" },
+                            { { 0, #icon },                         icon_hl },
+                            { { #icon, #transformed_path - #tail }, "Comment" },
                         }
                         return transformed_path, path_style
-                    end
+                    end,
                 },
                 fzf = {
                     fuzzy = true,                   -- false will only do exact matching

@@ -4,7 +4,9 @@ return {
     lazy = false,
     opts = {
         bigfile = { enabled = true, notify = true },
-        indent = { enabled = true },
+        indent = {
+            enabled = true,
+        },
         input = { enabled = true },
         notifier = { enabled = true },
         scope = { enabled = true },

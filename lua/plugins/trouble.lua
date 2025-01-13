@@ -32,9 +32,13 @@ return {
         },
         {
             "<leader>tt",
-            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+            "<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>",
             desc = "Trouble buffer diagnostics",
-        }
-
+        },
+        {
+            "<leader>tf",
+            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+            desc = "Trouble buffer diagnostics focus",
+        },
     },
 }

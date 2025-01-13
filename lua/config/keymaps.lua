@@ -22,6 +22,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz", { desc = "Next error" })
 vim.keymap.set("n", "<C-k>", vim.diagnostic.goto_prev, { desc = "Next lsp error" })
 vim.keymap.set("n", "<C-j>", vim.diagnostic.goto_next, { desc = "Next lsp error" })
 
+vim.keymap.set("n", "<c-s>", "<cmd>ASToggle<cr>", { desc = "Autosave toggle" })
+
 vim.keymap.set("n", "O", "o<esc>", { desc = "Insert empty line" })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system" })
@@ -30,7 +32,8 @@ vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "Copy line to system
 vim.keymap.set("n", "<leader>ß", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Lsp toggle inly hint" })
+vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, { desc = "Show floating diagnostic" })
 
-vim.keymap.set("n", "<leader>d", vim.lsp.buf.code_action, { desc = "Lsp code action" })
+vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Lsp code action" })
 vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", { desc = "Lsp format" })
 vim.keymap.set("n", "<leader>r", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })

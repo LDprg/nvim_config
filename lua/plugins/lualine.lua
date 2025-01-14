@@ -18,7 +18,22 @@ return {
                 { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
             },
             lualine_x = {
-                -- Snacks.profiler.status(),
+                {
+                    function()
+                        if vim.g.autosave_enabled then
+                            return "AS"
+                        else
+                            return "MS"
+                        end
+                    end,
+                    color = function()
+                        if vim.g.autosave_enabled then
+                            return { fg = Snacks.util.color("Constant") }
+                        else
+                            return { fg = Snacks.util.color("Statement") }
+                        end
+                    end,
+                },
                 {
                     function() return require("noice").api.status.command.get() end,
                     cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,

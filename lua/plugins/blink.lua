@@ -7,9 +7,8 @@ return {
         -- add blink.compat to dependencies
         {
             "saghen/blink.compat",
-            optional = true, -- make optional so it's only enabled if any extras need it
-            opts = {},
             version = "*",
+            opts = {},
         },
     },
     event = "InsertEnter",
@@ -30,9 +29,18 @@ return {
                     enabled = true,
                 },
             },
+            list = {
+                selection = {
+                    auto_insert = false,
+                },
+            },
             menu = {
+                min_width = 30,
+                border = 'rounded',
+                scrollbar = false,
                 draw = {
                     treesitter = { "lsp" },
+                    columns = { { "label", "label_description", gap = 1 }, { "kind_icon", gap = 1, "kind" } },
                 },
             },
             documentation = {
@@ -40,22 +48,21 @@ return {
                 auto_show_delay_ms = 200,
             },
             ghost_text = {
-                enabled = vim.g.ai_cmp,
+                enabled = true,
             },
         },
-
         sources = {
             default = { "lsp", "path", "snippets", "buffer" },
         },
-
         keymap = {
             preset = "default",
+            ['<C-k>'] = { 'select_prev', 'fallback' },
+            ['<C-j>'] = { 'select_next', 'fallback' },
             cmdline = {
                 preset = 'super-tab',
+                ['<C-k>'] = { 'select_prev', 'fallback' },
+                ['<C-j>'] = { 'select_next', 'fallback' },
             }
         },
     },
-    config = function(_, opts)
-        require("blink.cmp").setup(opts)
-    end,
 }

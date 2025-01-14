@@ -12,15 +12,17 @@ local group = vim.api.nvim_create_augroup('autosave', {})
 vim.api.nvim_create_autocmd('User', {
     pattern = 'AutoSaveEnable',
     group = group,
-    callback = function(opts)
-        vim.notify('AutoSave enabled', vim.log.levels.INFO)
+    callback = function(_)
+        vim.g.autosave_enabled = true
+        -- vim.notify('AutoSave enabled', vim.log.levels.INFO)
     end,
 })
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'AutoSaveDisable',
     group = group,
-    callback = function(opts)
-        vim.notify('AutoSave disabled', vim.log.levels.INFO)
+    callback = function(_)
+        vim.g.autosave_enabled = false
+        -- vim.notify('AutoSave disabled', vim.log.levels.INFO)
     end,
 })

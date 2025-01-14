@@ -9,7 +9,8 @@ return {
             'mrcjkb/rustaceanvim',
             version = '^5', -- Recommended
             lazy = false,   -- This plugin is already lazy
-        }
+        },
+        'saghen/blink.cmp',
     },
     opts = {
         -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
@@ -49,6 +50,8 @@ return {
             },
         })
 
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
+
         require("fidget").setup({})
         require("mason").setup({})
         require("mason-lspconfig").setup({
@@ -59,12 +62,15 @@ return {
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {}
+                    require("lspconfig")[server_name].setup {
+                        capabilities = capabilities,
+                    }
                 end,
 
                 ["zls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.zls.setup({
+                        capabilities = capabilities,
                         root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
                         settings = {
                             zls = {
@@ -80,6 +86,7 @@ return {
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
+                        capabilities = capabilities,
                         settings = {
                             Lua = {
                                 runtime = { version = "Lua 5.1" },

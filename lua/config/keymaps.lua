@@ -28,6 +28,8 @@ vim.keymap.set("n", "O", "o<esc>", { desc = "Insert empty line" })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system" })
 vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "Copy line to system" })
+vim.keymap.set({ "n", "v" }, "<leader>w", [["+p]], { desc = "Paste from system after" })
+vim.keymap.set({ "n", "v" }, "<leader>W", [["+P]], { desc = "Paste from system before" })
 
 vim.keymap.set("n", "<leader>ß", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

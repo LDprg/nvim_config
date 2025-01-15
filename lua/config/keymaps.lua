@@ -34,6 +34,17 @@ vim.keymap.set("n", "<leader>ß", function()
 end, { desc = "Lsp toggle inly hint" })
 vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, { desc = "Show floating diagnostic" })
 
+vim.keymap.set("n", "<leader>md", vim.lsp.buf.declaration, { desc = "Lsp goto declaration" })
+vim.keymap.set("n", "<leader>ms", vim.lsp.buf.definition, { desc = "Lsp goto definition" })
+vim.keymap.set("n", "<leader>mf", vim.lsp.buf.implementation, { desc = "Lsp goto implementation" })
+vim.keymap.set("n", "<leader>mm", vim.lsp.buf.references, { desc = "Lsp view references" })
+
+vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end, { desc = "Persistence load dir" })
+vim.keymap.set("n", "<leader>qS", function() require("persistence").select() end, { desc = "Persistence select" })
+vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last = true }) end,
+    { desc = "Persistence load last" })
+vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end, { desc = "Persistence stop" })
+
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Lsp code action" })
-vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", { desc = "Lsp format" })
+vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Lsp format" })
 vim.keymap.set("n", "<leader>r", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })

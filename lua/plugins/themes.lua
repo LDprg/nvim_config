@@ -8,13 +8,11 @@ return {
 
         { "LDprg/vim-moonfly-colors", name = "moonfly",    lazy = false,   priority = 1000 },
     },
-    config = function()
-        require("themery").setup({
-            themes = {
-                "catppuccin",
-                "moonfly",
-                "tokyonight-night",
-            },
-        })
-    end,
+    opts = {
+        themes = {
+            "catppuccin",
+            "moonfly",
+            "tokyonight-night",
+        },
+    },
 }

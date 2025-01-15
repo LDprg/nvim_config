@@ -6,8 +6,11 @@ return {
         bigfile = { enabled = true, notify = true },
         indent = {
             enabled = true,
+            filter = function(buf)
+                return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ""
+            end,
         },
-        input = { enabled = true },
+        input = { enabled = true, },
         notifier = { enabled = true },
         scope = { enabled = true },
         scroll = { enabled = true },

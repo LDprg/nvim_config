@@ -20,8 +20,4 @@ return {
         current_line_blame = true,
         numhl              = true,
     },
-    config = function()
-        require('gitsigns').setup()
-        require("scrollbar.handlers.gitsigns").setup()
-    end
 }

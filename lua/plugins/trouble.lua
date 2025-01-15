@@ -27,7 +27,7 @@ return {
         },
         {
             "<leader>tl",
-            "<cmd>Trouble lsp toggle focus=true win.position=right<cr>",
+            "<cmd>Trouble lsp toggle focus=true<cr>",
             desc = "Trouble lsp definitions / references / ...",
         },
         {

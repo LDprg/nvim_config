@@ -47,4 +47,3 @@ vim.opt.updatetime = 50
 
 -- vim.opt.colorcolumn = "140"
 vim.opt.fileencoding = "utf-8"
-

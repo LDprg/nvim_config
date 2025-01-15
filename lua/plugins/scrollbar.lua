@@ -2,19 +2,17 @@ return {
     'petertriho/nvim-scrollbar',
     event = "VeryLazy",
     config = function()
-        local colors = require("tokyonight.colors").setup()
-
         require("scrollbar").setup({
             handle = {
-                color = colors.bg_highlight,
+                color = "#080808",
             },
             marks = {
-                Search = { color = colors.orange },
-                Error = { color = colors.error },
-                Warn = { color = colors.warning },
-                Info = { color = colors.info },
-                Hint = { color = colors.hint },
-                Misc = { color = colors.purple },
+                Search = { color = Snacks.util.color("Search") },
+                Error = { color = Snacks.util.color("DiagnosticError") },
+                Warn = { color = Snacks.util.color("DiagnosticWarning") },
+                Info = { color = Snacks.util.color("DiagnosticInfo") },
+                Hint = { color = Snacks.util.color("DiagnosticHint") },
+                Misc = { color = Snacks.util.color("DiagnosticOk") },
             }
         })
     end

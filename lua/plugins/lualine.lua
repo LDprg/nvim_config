@@ -5,7 +5,14 @@ return {
         options = {
             theme = "auto",
             globalstatus = vim.o.laststatus == 3,
-            disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+            disabled_filetypes = {
+                statusline = {
+                    "dashboard",
+                    "alpha",
+                    "ministarter",
+                    "snacks_dashboard"
+                }
+            },
         },
         sections = {
             lualine_a = { "mode" },
@@ -15,7 +22,7 @@ return {
                 {
                     "diagnostics",
                 },
-                { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+                { "filetype", separator = "", padding = { left = 1, right = 0 } },
             },
             lualine_x = {
                 {
@@ -28,9 +35,9 @@ return {
                     end,
                     color = function()
                         if vim.g.autosave_enabled then
-                            return { fg = Snacks.util.color("Constant") }
+                            return { fg = Snacks.util.color("WarningMsg") }
                         else
-                            return { fg = Snacks.util.color("Statement") }
+                            return { fg = Snacks.util.color("Normal") }
                         end
                     end,
                 },
@@ -73,6 +80,6 @@ return {
                 end,
             },
         },
-        extensions = { "neo-tree", "lazy", "fzf" },
+        extensions = { "neo-tree", "lazy", "fzf", "trouble", "mason" },
     },
 }

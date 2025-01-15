@@ -1,13 +1,13 @@
 return {
     "parmeniong/neocolumn.nvim",
+    event = "VeryLazy",
     opts = {
-        -- match Tokyonight theme
         colors = {
-            normal = "#3b4261",
-            error = "#db4b4b",
-            warn = "#e0af68",
-            info = "#0db9d7",
-            hint = "#1abc9c",
+            normal = Snacks.util.color("Normal"),
+            error = Snacks.util.color("DiagnosticError"),
+            warn = Snacks.util.color("DiagnosticWarning"),
+            info = Snacks.util.color("DiagnosticInfo"),
+            hint = Snacks.util.color("DiagnosticHint"),
             bg = nil,
             cursor_bg = nil,
         },

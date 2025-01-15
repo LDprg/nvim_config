@@ -1,6 +1,7 @@
 return {
     "LDprg/neo-tree.nvim",
     --branch = "v3.x",
+    event = "VeryLazy",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
@@ -36,7 +37,7 @@ return {
             width = "50%",
             mappings = {
                 ["<esc>"] = "close_window",
-                ["P"] = { "toggle_preview", config = { use_float = false } },
+                ["P"] = { "toggle_preview", config = { use_float = true } },
             },
         },
         default_component_configs = {
@@ -90,7 +91,8 @@ return {
                 handler = function()
                     local state = require('neo-tree.sources.manager').get_state('filesystem')
                     if not require('neo-tree.sources.common.preview').is_active() then
-                        state.config = { use_float = false }
+                        -- state.config = { use_float = false }
+                        state.config = { use_float = true }
                         state.commands.toggle_preview(state)
                     end
                 end

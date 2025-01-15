@@ -60,6 +60,7 @@ return {
             ['<C-j>'] = { 'select_next', 'fallback' },
             cmdline = {
                 preset = 'super-tab',
+                ['<C-y>'] = { 'select_and_accept' },
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-j>'] = { 'select_next', 'fallback' },
             }

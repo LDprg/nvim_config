@@ -1,17 +1,16 @@
 return {
     'petertriho/nvim-scrollbar',
+    event = "VeryLazy",
     dependencies = {
         "lewis6991/gitsigns.nvim",
     },
     config = function()
         require("scrollbar").setup({
-            set_highlights = true,
             handle = {
-                blend = 0,
-                color = "#080808",
+                blend = 70,
+                color = Snacks.util.color("Comment"),
             },
             marks = {
-                -- Search = { color = Snacks.util.color("Search") },
                 Search = { color = Snacks.util.color("Search") },
                 Error = { color = Snacks.util.color("DiagnosticError") },
                 Warn = { color = Snacks.util.color("DiagnosticWarning") },
@@ -21,6 +20,23 @@ return {
             },
             handlers = {
                 gitsigns = true, -- Requires gitsigns
+            },
+            excluded_buftypes = {
+                "terminal",
+                "nofile",
+            },
+            excluded_filetypes = {
+                "dropbar_menu",
+                "dropbar_menu_fzf",
+                "DressingInput",
+                "cmp_docs",
+                "cmp_menu",
+                "noice",
+                "prompt",
+                "TelescopePrompt",
+                "snacks_dashboard",
+                "blink-cmp-menu",
+                "blink-cmp-documentation"
             },
         })
         require("scrollbar.handlers.gitsigns").setup()

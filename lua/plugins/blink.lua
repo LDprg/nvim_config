@@ -1,15 +1,9 @@
 return {
     "saghen/blink.cmp",
-    version = "*",
     build = "cargo build --release",
     dependencies = {
         "rafamadriz/friendly-snippets",
-        -- add blink.compat to dependencies
-        {
-            "saghen/blink.compat",
-            version = "*",
-            opts = {},
-        },
+        "saghen/blink.compat",
     },
     event = "InsertEnter",
     opts = {
@@ -37,7 +31,7 @@ return {
             menu = {
                 min_width = 30,
                 border = 'rounded',
-                scrollbar = false,
+                scrollbar = true,
                 draw = {
                     treesitter = { "lsp" },
                     columns = { { "label", "label_description", gap = 1 }, { "kind_icon", gap = 1, "kind" } },

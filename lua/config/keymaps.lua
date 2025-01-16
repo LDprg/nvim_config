@@ -54,7 +54,12 @@ vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last 
     { desc = "Persistence load last" })
 vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end, { desc = "Persistence stop" })
 
-vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, { desc = "Lsp code hover" })
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Lsp code action" })
+vim.keymap.set("n", "<leader>h", function()
+    vim.lsp.buf.hover({
+        focusable = false,
+        border = "rounded",
+    })
+end, { desc = "Lsp code hover" })
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Lsp format" })
 vim.keymap.set("n", "<leader>r", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })

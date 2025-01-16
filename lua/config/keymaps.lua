@@ -31,6 +31,8 @@ vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]], { desc = "Copy line to system
 vim.keymap.set({ "n", "v" }, "<leader>w", [["+p]], { desc = "Paste from system after" })
 vim.keymap.set({ "n", "v" }, "<leader>W", [["+P]], { desc = "Paste from system before" })
 
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Lsp rename" })
+
 vim.keymap.set("n", "<leader>ß", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Lsp toggle inly hint" })
@@ -52,7 +54,6 @@ vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end, 
 vim.keymap.set("n", "<leader>qS", function() require("persistence").select() end, { desc = "Persistence select" })
 vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last = true }) end,
     { desc = "Persistence load last" })
-vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end, { desc = "Persistence stop" })
 
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Lsp code action" })
 vim.keymap.set("n", "<leader>h", function()
@@ -62,4 +63,4 @@ vim.keymap.set("n", "<leader>h", function()
     })
 end, { desc = "Lsp code hover" })
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Lsp format" })
-vim.keymap.set("n", "<leader>r", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })
+vim.keymap.set("n", "<leader>pr", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })

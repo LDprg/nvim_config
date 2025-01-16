@@ -36,6 +36,7 @@ return {
             position = "left",
             width = "50%",
             mappings = {
+                ["l"] = "",
                 ["<esc>"] = "close_window",
                 ["P"] = { "toggle_preview", config = { use_float = true } },
             },

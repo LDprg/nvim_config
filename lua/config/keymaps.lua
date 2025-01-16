@@ -36,12 +36,25 @@ vim.keymap.set("n", "<leader>ß", function()
 end, { desc = "Lsp toggle inly hint" })
 vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, { desc = "Show floating diagnostic" })
 
+vim.api.nvim_set_keymap('n', 'n',
+    [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'N',
+    [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><leader>', '<Cmd>noh<CR>', { desc = "Clear Highlight" })
+
 vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end, { desc = "Persistence load dir" })
 vim.keymap.set("n", "<leader>qS", function() require("persistence").select() end, { desc = "Persistence select" })
 vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last = true }) end,
     { desc = "Persistence load last" })
 vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end, { desc = "Persistence stop" })
 
+vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, { desc = "Lsp code hover" })
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Lsp code action" })
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Lsp format" })
 vim.keymap.set("n", "<leader>r", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })

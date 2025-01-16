@@ -19,6 +19,7 @@ return {
                 Misc = { color = Snacks.util.color("DiagnosticOk") },
             },
             handlers = {
+                search = true,   -- Requires hlslens
                 gitsigns = true, -- Requires gitsigns
             },
             excluded_buftypes = {
@@ -40,5 +41,6 @@ return {
             },
         })
         require("scrollbar.handlers.gitsigns").setup()
+        require("scrollbar.handlers.search").setup()
     end
 }

@@ -9,6 +9,29 @@
 
 local group = vim.api.nvim_create_augroup('autosave', {})
 
+-- autosave for disabling automatic formatting
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'AutoSaveWritePre',
+    group = group,
+    callback = function(opts)
+        if opts.data.saved_buffer ~= nil then
+            local filename = vim.api.nvim_buf_get_name(opts.data.saved_buffer)
+            vim.g.autosave = filename
+        end
+    end,
+})
+
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'AutoSaveWritePost',
+    group = group,
+    callback = function(opts)
+        if opts.data.saved_buffer ~= nil then
+            vim.g.autosave = nil
+        end
+    end,
+})
+
+-- autosave_enabled global for lualine
 vim.api.nvim_create_autocmd('User', {
     pattern = 'AutoSaveEnable',
     group = group,

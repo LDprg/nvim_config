@@ -62,5 +62,5 @@ vim.keymap.set("n", "<leader>h", function()
         border = "rounded",
     })
 end, { desc = "Lsp code hover" })
-vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, { desc = "Lsp format" })
+vim.keymap.set("n", "<leader>f", function() require("conform").format({ async = true }) end, { desc = "Lsp format" })
 vim.keymap.set("n", "<leader>pr", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })

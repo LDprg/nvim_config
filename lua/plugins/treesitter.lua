@@ -5,7 +5,7 @@ return {
     event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
-        { "<c-cr>", desc = "Increment Selection" },
+        { "<C-cr>", desc = "Increment Selection" },
         { "<bs>",   desc = "Decrement Selection", mode = "x" },
     },
     opts = {
@@ -42,4 +42,7 @@ return {
             },
         },
     },
+    config = function(_, opts)
+        require("nvim-treesitter.configs").setup(opts)
+    end,
 }

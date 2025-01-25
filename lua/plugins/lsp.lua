@@ -37,19 +37,6 @@ return {
         },
     },
     config = function()
-        vim.diagnostic.config({
-            update_in_insert = true,
-            severity_sort = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-        })
-
         local capabilities = require('blink.cmp').get_lsp_capabilities()
 
         require("fidget").setup({})
@@ -102,8 +89,10 @@ return {
             },
         })
 
+        local lspconfig = require("lspconfig")
+        lspconfig.htmx.setup {}
+
         if vim.g.use_bacon_lsp then
-            local lspconfig = require("lspconfig")
             local configs = require("lspconfig.configs")
             if not configs.bacon_ls then
                 configs.bacon_ls = {
@@ -128,9 +117,9 @@ return {
         vim.g.rustaceanvim = {
             server = {
                 root_dir = require("lspconfig").util.root_pattern('Cargo.toml'),
-                on_attach = function(_, bufnr)
-                    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-                end,
+                -- on_attach = function(_, bufnr)
+                --     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                -- end,
                 settings = {
                     -- rust-analyzer language server configuration
                     ['rust-analyzer'] = {
@@ -154,5 +143,18 @@ return {
                 },
             },
         }
+
+        vim.diagnostic.config({
+            update_in_insert = true,
+            severity_sort = true,
+            float = {
+                focusable = false,
+                style = "minimal",
+                border = "rounded",
+                source = "always",
+                header = "",
+                prefix = "",
+            },
+        })
     end,
 }

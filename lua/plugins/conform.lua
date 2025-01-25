@@ -4,7 +4,18 @@ return {
     config = function()
         require("conform").setup({
             formatters_by_ft = {
-                markdown = { "prettier" },
+                javascript = { "prettierd" },
+                typescript = { "prettierd" },
+                javascriptreact = { "prettierd" },
+                typescriptreact = { "prettierd" },
+                svelte = { "prettierd" },
+                css = { "prettierd" },
+                html = { "prettierd" },
+                json = { "prettierd" },
+                markdown = { "prettierd" },
+            },
+            default_format_opts = {
+                lsp_format = "fallback",
             },
             format_on_save = function()
                 if vim.g.autosave == nil then

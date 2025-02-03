@@ -8,6 +8,10 @@ vim.g.loaded_perl_provider = 0
 
 vim.g.use_bacon_lsp = false
 
+vim.g.moonflyVirtualTextColor = true
+vim.g.moonflyUnderlineMatchParen = true
+-- vim.g.moonflyCursorColor = true
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 

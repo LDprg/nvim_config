@@ -1,12 +1,20 @@
 return {
     "saghen/blink.cmp",
+    version = "*",
     build = "cargo build --release",
     dependencies = {
         "rafamadriz/friendly-snippets",
-        "saghen/blink.compat",
+        "L3MON4D3/LuaSnip",
+        -- add blink.compat to dependencies
+        {
+            "saghen/blink.compat",
+            version = "*",
+            opts = {},
+        },
     },
     event = "InsertEnter",
     opts = {
+        snippets = { preset = 'luasnip' },
         appearance = {
             -- sets the fallback highlight groups to nvim-cmp's highlight groups
             -- useful for when your theme doesn't support blink.cmp
@@ -29,7 +37,6 @@ return {
                 },
             },
             menu = {
-                min_width = 30,
                 border = 'rounded',
                 scrollbar = true,
                 draw = {

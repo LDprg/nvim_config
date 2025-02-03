@@ -147,8 +147,9 @@ return {
         vim.diagnostic.config({
             update_in_insert = true,
             severity_sort = true,
+            virtual_text = true,
             float = {
-                focusable = false,
+                focusable = true,
                 style = "minimal",
                 border = "rounded",
                 source = "always",

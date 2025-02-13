@@ -107,7 +107,7 @@ return {
             lspconfig.bacon_ls.setup({
                 init_options = {
                     updateOnSave = true,
-                    updateOnSaveWaitMillis = 500,
+                    updateOnSaveWaitMillis = 250,
                     updateOnChange = true,
                     validateBaconPreferences = true,
                     createBaconPreferencesFile = true,

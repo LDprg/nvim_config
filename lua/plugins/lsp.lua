@@ -109,6 +109,9 @@ return {
                     updateOnSave = true,
                     updateOnSaveWaitMillis = 1000,
                     updateOnChange = true,
+                    validateBaconPreferences = true,
+                    createBaconPreferencesFile = true,
+                    runBaconInBackground = true,
                 },
                 autostart = true
             })

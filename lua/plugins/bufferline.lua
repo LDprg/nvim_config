@@ -8,6 +8,10 @@ return {
             close_command = function(n) Snacks.bufdelete(n) end,
             right_mouse_command = function(n) Snacks.bufdelete(n) end,
             diagnostics = "nvim_lsp",
+            diagnostics_indicator = function(count, level, _, _)
+                local icon = level:match("error") and " " or " "
+                return " " .. icon .. count
+            end,
             offsets = {
                 {
                     filetype = "neo-tree",

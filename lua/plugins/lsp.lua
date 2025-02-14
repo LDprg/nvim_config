@@ -86,6 +86,12 @@ return {
                 end,
                 ["rust_analyzer"] = function()
                 end,
+                ["clangd"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.clangd.setup {
+                        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+                    }
+                end,
             },
         })
 

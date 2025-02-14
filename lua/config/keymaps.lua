@@ -12,9 +12,9 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 vim.keymap.set("n", "K", "mzJ`z", { desc = "Remove end line" })
 vim.keymap.set("n", "J", "i<cr><esc>", { desc = "Break line at cursor" })
 
-vim.keymap.set("n", "<M-k>", "<cmd>bprev<cr>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<M-j>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<M-w>", "<cmd>bdel<cr>", { desc = "Close buffer" })
+vim.keymap.set({ "n", "i" }, "<M-k>", "<cmd>bprev<cr>", { desc = "Previous buffer" })
+vim.keymap.set({ "n", "i" }, "<M-j>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set({ "n", "i" }, "<M-w>", "<cmd>bdel<cr>", { desc = "Close buffer" })
 
 vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz", { desc = "Previous error" })
 vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz", { desc = "Next error" })
@@ -22,7 +22,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz", { desc = "Next error" })
 vim.keymap.set("n", "<C-k>", vim.diagnostic.goto_prev, { desc = "Next lsp error" })
 vim.keymap.set("n", "<C-j>", vim.diagnostic.goto_next, { desc = "Next lsp error" })
 
-vim.keymap.set("n", "<c-s>", "<cmd>ASToggle<cr>", { desc = "Autosave toggle" })
+vim.keymap.set({ "n", "i" }, "<c-s>", "<cmd>ASToggle<cr>", { desc = "Autosave toggle" })
 
 vim.keymap.set("n", "O", "o<esc>", { desc = "Insert empty line" })
 

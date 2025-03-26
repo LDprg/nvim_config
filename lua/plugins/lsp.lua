@@ -58,6 +58,8 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.zls.setup({
                         capabilities = capabilities,
+                        cmd = { "zls" },
+                        filetypes = { "zig", "zon" },
                         root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
                         settings = {
                             zls = {

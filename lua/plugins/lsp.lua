@@ -97,6 +97,7 @@ return {
 
         local lspconfig = require("lspconfig")
         lspconfig.htmx.setup {}
+        -- lspconfig.ccls.setup {}
 
         if vim.g.use_bacon_lsp then
             local configs = require("lspconfig.configs")
@@ -132,6 +133,15 @@ return {
                 settings = {
                     -- rust-analyzer language server configuration
                     ['rust-analyzer'] = {
+                        procMacro = {
+                            ignored = {
+                                leptos_macro = {
+                                    -- optional: --
+                                    -- "component",
+                                    "server",
+                                },
+                            },
+                        },
                         cargo = {
                             features = "all",
                         },

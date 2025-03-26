@@ -49,7 +49,7 @@ return {
                 auto_show_delay_ms = 200,
             },
             ghost_text = {
-                enabled = true,
+                enabled = false,
             },
         },
         sources = {
@@ -63,12 +63,14 @@ return {
 
             ['<Up>'] = {},
             ['<Down>'] = {},
-            cmdline = {
+        },
+        cmdline = {
+            keymap = {
                 preset = 'super-tab',
                 ['<C-y>'] = { 'select_and_accept' },
                 ['<C-k>'] = { 'select_prev', 'fallback' },
                 ['<C-j>'] = { 'select_next', 'fallback' },
-            }
+            },
         },
     },
 }

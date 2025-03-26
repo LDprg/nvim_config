@@ -6,7 +6,7 @@ vim.g.have_nerd_font = true
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
-vim.g.use_bacon_lsp = true
+vim.g.use_bacon_lsp = false
 
 vim.g.moonflyVirtualTextColor = true
 vim.g.moonflyUnderlineMatchParen = true
@@ -44,7 +44,7 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 10
 vim.opt.signcolumn = 'yes'
 
 vim.opt.updatetime = 50

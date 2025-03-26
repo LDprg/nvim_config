@@ -3,6 +3,9 @@ return {
     cmd = { "Trouble" },
     opts = {
         focus = true,
+        win = {
+            size = 30,
+        }
     },
     keys = {
         {

@@ -44,12 +44,15 @@ return {
                 { pane = 2, section = "startup" },
             },
         },
+        lazygit = {
+            configure = true,
+        }
     },
     keys = {
         { "<leader>nn", function() Snacks.notifier.show_history() end, desc = "Notification History" },
         { "<leader>nx", function() Snacks.notifier.hide() end,         desc = "Dismiss All Notifications" },
         { "<leader>g",  function() Snacks.lazygit.open() end,          desc = "Lazygit" },
-        { "<leader>l",  function() Snacks.lazygit.log() end,           desc = "Lazygit log" },
-        { "<leader>pl", function() Snacks.lazygit.log_file() end,      desc = "Lazygit file log" },
+        { "<leader>pl", function() Snacks.lazygit.log() end,           desc = "Lazygit log" },
+        { "<leader>l",  function() Snacks.lazygit.log_file() end,      desc = "Lazygit file log" },
     },
 }

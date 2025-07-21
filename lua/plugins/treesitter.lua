@@ -1,6 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
+    branch = 'master',
+    lazy = false,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
@@ -32,6 +33,7 @@ return {
         },
         indent = { enable = true },
         ensure_installed = "all",
+        auto_install = true,
         incremental_selection = {
             enable = true,
             keymaps = {

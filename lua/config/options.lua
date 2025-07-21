@@ -51,3 +51,54 @@ vim.opt.updatetime = 50
 
 -- vim.opt.colorcolumn = "140"
 vim.opt.fileencoding = "utf-8"
+
+-- vim.g.rustaceanvim = {
+--     server = {
+--         -- root_dir = require("lspconfig").util.root_pattern('Cargo.toml'),
+--         -- on_attach = function(_, bufnr)
+--         --     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+--         -- end,
+--         cmd = function()
+--             local mason_registry = require('mason-registry')
+--             if mason_registry.is_installed('rust-analyzer') then
+--                 -- This may need to be tweaked depending on the operating system.
+--                 local ra = mason_registry.get_package('rust-analyzer')
+--                 local ra_filename = ra:get_receipt():get().links.bin['rust-analyzer']
+--                 return { ('%s/%s'):format(ra:get_install_path(), ra_filename or 'rust-analyzer') }
+--             else
+--                 -- global installation
+--                 return { 'rust-analyzer' }
+--             end
+--         end,
+--         default_settings = {
+--             -- rust-analyzer language server configuration
+--             ['rust-analyzer'] = {
+--                 procMacro = {
+--                     ignored = {
+--                         leptos_macro = {
+--                             -- optional: --
+--                             -- "component",
+--                             "server",
+--                         },
+--                     },
+--                 },
+--                 cargo = {
+--                     features = "all",
+--                 },
+--                 workspace = {
+--                     symbol = {
+--                         search = {
+--                             kind = "all_symbols",
+--                         }
+--                     }
+--                 },
+--                 checkOnSave = {
+--                     enable = vim.g.use_bacon_lsp == false,
+--                 },
+--                 diagnostics = {
+--                     enable = vim.g.use_bacon_lsp == false,
+--                 },
+--             },
+--         },
+--     },
+-- }

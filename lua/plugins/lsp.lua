@@ -1,15 +1,15 @@
 return {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
     dependencies = {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason.nvim",
+        "mason-org/mason-lspconfig.nvim",
         "j-hui/fidget.nvim",
-        {
-            'mrcjkb/rustaceanvim',
-            version = '^5', -- Recommended
-            lazy = false,   -- This plugin is already lazy
-        },
+        -- {
+        --     'mrcjkb/rustaceanvim',
+        --     version = '^6', -- Recommended
+        --     lazy = false,   -- This plugin is already lazy
+        -- },
         'saghen/blink.cmp',
     },
     opts = {
@@ -37,27 +37,19 @@ return {
         },
     },
     config = function()
-        local capabilities = require('blink.cmp').get_lsp_capabilities()
-
         require("fidget").setup({})
         require("mason").setup({})
         require("mason-lspconfig").setup({
+            automatic_enable = true,
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer@nightly",
                 "gopls",
             },
             handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities,
-                    }
-                end,
-
                 ["zls"] = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.zls.setup({
-                        capabilities = capabilities,
+                    vim.lsp.config("zls", {
                         root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
                         settings = {
                             zls = {
@@ -71,97 +63,52 @@ return {
                     vim.g.zig_fmt_autosave = 0
                 end,
                 ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
+                    vim.lsp.config("lua_ls", {
                         settings = {
                             Lua = {
-                                runtime = { version = "Lua 5.1" },
                                 diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each", "Snacks" },
+                                    global = { "bit", "vim", "it", "describe", "before_each", "after_each", "Snacks" },
                                 }
                             }
                         }
-                    }
-                end,
-                ["rust_analyzer"] = function()
+                    })
                 end,
                 ["clangd"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.clangd.setup {
+                    vim.lsp.config("clangd", {
                         filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-                    }
+                    })
                 end,
             },
         })
 
-        local lspconfig = require("lspconfig")
-        lspconfig.htmx.setup {}
+        -- local lspconfig = require("lspconfig")
+        -- lspconfig.htmx.setup {}
         -- lspconfig.ccls.setup {}
 
-        if vim.g.use_bacon_lsp then
-            local configs = require("lspconfig.configs")
-            if not configs.bacon_ls then
-                configs.bacon_ls = {
-                    default_config = {
-                        cmd = { "bacon-ls" },
-                        -- root_dir = require("lspconfig").util.root_pattern('Cargo.toml'),
-                        root_dir = require("lspconfig").util.root_pattern('.git'),
-                        filetypes = { "rust" },
-                    },
-                }
-            end
-            lspconfig.bacon_ls.setup({
-                init_options = {
-                    updateOnSave = true,
-                    updateOnSaveWaitMillis = 250,
-                    updateOnChange = true,
-                    validateBaconPreferences = true,
-                    createBaconPreferencesFile = true,
-                    runBaconInBackground = true,
-                },
-                autostart = true
-            })
-        end
-
-        vim.g.rustaceanvim = {
-            server = {
-                root_dir = require("lspconfig").util.root_pattern('Cargo.toml'),
-                -- on_attach = function(_, bufnr)
-                --     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-                -- end,
-                settings = {
-                    -- rust-analyzer language server configuration
-                    ['rust-analyzer'] = {
-                        procMacro = {
-                            ignored = {
-                                leptos_macro = {
-                                    -- optional: --
-                                    -- "component",
-                                    "server",
-                                },
-                            },
-                        },
-                        cargo = {
-                            features = "all",
-                        },
-                        workspace = {
-                            symbol = {
-                                search = {
-                                    kind = "all_symbols",
-                                }
-                            }
-                        },
-                        checkOnSave = {
-                            enable = vim.g.use_bacon_lsp == false,
-                        },
-                        diagnostics = {
-                            enable = vim.g.use_bacon_lsp == false,
-                        },
-                    },
-                },
-            },
-        }
+        -- if vim.g.use_bacon_lsp then
+        --     local configs = require("lspconfig.configs")
+        --     if not configs.bacon_ls then
+        --         configs.bacon_ls = {
+        --             default_config = {
+        --                 cmd = { "bacon-ls" },
+        --                 -- root_dir = require("lspconfig").util.root_pattern('Cargo.toml'),
+        --                 root_dir = require("lspconfig").util.root_pattern('.git'),
+        --                 filetypes = { "rust" },
+        --             },
+        --         }
+        --     end
+        --     lspconfig.bacon_ls.setup({
+        --         init_options = {
+        --             updateOnSave = true,
+        --             updateOnSaveWaitMillis = 250,
+        --             updateOnChange = true,
+        --             validateBaconPreferences = true,
+        --             createBaconPreferencesFile = true,
+        --             runBaconInBackground = true,
+        --         },
+        --         autostart = true
+        --     })
+        -- end
 
         vim.diagnostic.config({
             update_in_insert = true,

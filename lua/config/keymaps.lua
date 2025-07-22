@@ -15,6 +15,8 @@ vim.keymap.set("n", "J", "i<cr><esc>", { desc = "Break line at cursor" })
 vim.keymap.set({ "n", "i" }, "<M-k>", "<cmd>bprev<cr>", { desc = "Previous buffer" })
 vim.keymap.set({ "n", "i" }, "<M-j>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set({ "n", "i" }, "<M-w>", "<cmd>bdel<cr>", { desc = "Close buffer" })
+vim.keymap.set({ "n", "i" }, "<M-right>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer next" })
+vim.keymap.set({ "n", "i" }, "<M-left>", "<cmd>BufferLineMovePrev<cr>", { desc = "Move buffer prev" })
 
 vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz", { desc = "Previous error" })
 vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz", { desc = "Next error" })

@@ -74,8 +74,25 @@ return {
                     })
                 end,
                 ["clangd"] = function()
+                    local lspconfig = require("lspconfig")
                     vim.lsp.config("clangd", {
+                        root_dir = lspconfig.util.root_pattern(".git", ".clangd"),
                         filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+                        cmd = {
+                            "clangd",
+                            "--all-scopes-completion",
+                            "--background-index",
+                            "--clang-tidy",
+                            "--completion-parse=always",
+                            "--completion-style=detailed",
+                            "--cross-file-rename",
+                            "--enable-config",
+                            "--fallback-style=llvm",
+                            "--function-arg-placeholders",
+                            "--pch-storage=memory",
+                            "-j=8",
+                            "--log=verbose",
+                        },
                     })
                 end,
             },

@@ -98,7 +98,7 @@ return {
 
         vim.g.rustaceanvim = {
             server = {
-                default_settings = {
+                settings = {
                     ["rust-analyzer"] = {
                         procMacro = {
                             ignored = {

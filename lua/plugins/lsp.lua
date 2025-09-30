@@ -90,7 +90,7 @@ return {
             settings = {
                 Lua = {
                     diagnostics = {
-                        global = { "bit", "vim", "it", "describe", "before_each", "after_each", "Snacks" },
+                        globals = { "vim", "Snacks" },
                     }
                 }
             }
@@ -112,19 +112,19 @@ return {
                         cargo = {
                             features = "all",
                         },
-                        workspace = {
-                            symbol = {
-                                search = {
-                                    kind = "all_symbols",
-                                }
-                            }
-                        },
-                        checkOnSave = {
-                            enable = vim.g.use_bacon_lsp == false,
-                        },
-                        diagnostics = {
-                            enable = vim.g.use_bacon_lsp == false,
-                        }
+                        -- workspace = {
+                        --     symbol = {
+                        --         search = {
+                        --             kind = "all_symbols",
+                        --         }
+                        --     }
+                        -- },
+                        -- checkOnSave = {
+                        --     enable = vim.g.use_bacon_lsp == false,
+                        -- },
+                        -- diagnostics = {
+                        --     enable = vim.g.use_bacon_lsp == false,
+                        -- }
                     }
                 },
             },

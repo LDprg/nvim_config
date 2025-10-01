@@ -157,10 +157,6 @@ return {
             }
         })
 
-        vim.lsp.config("emmet_ls", {
-            filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue", "rust" }
-        })
-
         -- local lspconfig = require("lspconfig")
         -- lspconfig.htmx.setup {}
         -- lspconfig.ccls.setup {}

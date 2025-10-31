@@ -5,7 +5,7 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
-        "echasnovski/mini.icons",
+        "nvim-mini/mini.icons",
 
         "qw457812/telescope-zoxide",
         -- 'jvgrootveld/telescope-zoxide',

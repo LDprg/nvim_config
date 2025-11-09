@@ -4,7 +4,7 @@ return {
     build = "cargo build --release",
     dependencies = {
         "rafamadriz/friendly-snippets",
-        "L3MON4D3/LuaSnip",
+        { "L3MON4D3/LuaSnip", version = "v2.*" },
         -- add blink.compat to dependencies
         {
             "saghen/blink.compat",

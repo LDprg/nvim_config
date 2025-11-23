@@ -34,25 +34,26 @@ vim.keymap.set({ "n", "v" }, "<leader>w", [["+p]], { desc = "Paste from system a
 vim.keymap.set({ "n", "v" }, "<leader>W", [["+P]], { desc = "Paste from system before" })
 
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Lsp rename" })
+-- vim.keymap.set("n", "<C-space>", "\\<C-]>", { desc = "Jump to tag" })
 
 vim.keymap.set("n", "<leader>ß", function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Lsp toggle inly hint" })
 vim.keymap.set("n", "<leader>d", function()
-    vim.diagnostic.open_float()
+	vim.diagnostic.open_float()
 end, { desc = "Show floating diagnostic" })
 
 vim.api.nvim_set_keymap(
-    "n",
-    "n",
-    [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-    { noremap = true, silent = true }
+	"n",
+	"n",
+	[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+	{ noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
-    "n",
-    "N",
-    [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-    { noremap = true, silent = true }
+	"n",
+	"N",
+	[[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+	{ noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
@@ -61,23 +62,23 @@ vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]]
 vim.api.nvim_set_keymap("n", "<leader><leader>", "<Cmd>noh<CR>", { desc = "Clear Highlight" })
 
 vim.keymap.set("n", "<leader>qs", function()
-    require("persistence").load()
+	require("persistence").load()
 end, { desc = "Persistence load dir" })
 vim.keymap.set("n", "<leader>qS", function()
-    require("persistence").select()
+	require("persistence").select()
 end, { desc = "Persistence select" })
 vim.keymap.set("n", "<leader>ql", function()
-    require("persistence").load({ last = true })
+	require("persistence").load({ last = true })
 end, { desc = "Persistence load last" })
 
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Lsp code action" })
 vim.keymap.set("n", "<leader>h", function()
-    vim.lsp.buf.hover({
-        focusable = false,
-        border = "rounded",
-    })
+	vim.lsp.buf.hover({
+		focusable = false,
+		border = "rounded",
+	})
 end, { desc = "Lsp code hover" })
 vim.keymap.set("n", "<leader>f", function()
-    require("conform").format({ async = true })
+	require("conform").format({ async = true })
 end, { desc = "Lsp format" })
 vim.keymap.set("n", "<leader>pr", "<cmd>LspRestart<cr>", { desc = "Lsp restart" })

@@ -11,6 +11,7 @@ return {
 			lazy = false, -- This plugin is already lazy
 		},
 		"saghen/blink.cmp",
+		"p00f/clangd_extensions.nvim",
 	},
 	opts = {
 		-- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
@@ -47,6 +48,7 @@ return {
 			},
 			ensure_installed = {
 				"lua_ls",
+				"clangd",
 				"rust_analyzer@nightly",
 				"gopls",
 			},
@@ -67,7 +69,6 @@ return {
 		vim.g.zig_fmt_autosave = 0
 
 		vim.lsp.config("clangd", {
-			root_dir = lspconfig.util.root_pattern(".git", ".clangd"),
 			filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 			cmd = {
 				"clangd",
@@ -83,6 +84,34 @@ return {
 				"--pch-storage=memory",
 				"-j=8",
 				"--log=verbose",
+			},
+			init_options = {
+				usePlaceholders = true,
+				completeUnimported = true,
+				clangdFileStatus = true,
+			},
+		})
+
+		require("clangd_extensions").setup({
+			ast = {
+				--These require codicons (https://github.com/microsoft/vscode-codicons)
+				role_icons = {
+					type = "",
+					declaration = "",
+					expression = "",
+					specifier = "",
+					statement = "",
+					["template argument"] = "",
+				},
+				kind_icons = {
+					Compound = "",
+					Recovery = "",
+					TranslationUnit = "",
+					PackExpansion = "",
+					TemplateTypeParm = "",
+					TemplateTemplateParm = "",
+					TemplateParamObject = "",
+				},
 			},
 		})
 

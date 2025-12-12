@@ -50,6 +50,37 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
+-- mhdl
+if vim.fn.isdirectory("/home/ld/git/mhdl/") == 1 then
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "TSUpdate",
+		callback = function()
+			require("nvim-treesitter.parsers").mhdl = {
+				install_info = {
+					path = "/home/ld/git/mhdl/",
+					location = "tree-sitter-mhdl",
+					generate = true,
+					queries = "queries",
+				},
+			}
+		end,
+	})
+
+	vim.filetype.add({
+		extension = {
+			mhdl = "mhdl",
+		},
+	})
+
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = { "mhdl" },
+		callback = function()
+			vim.treesitter.start()
+		end,
+	})
+end
+
+-- tree-sitter grammar.js info
 if vim.fn.executable("/opt/tree-sitter-grammar-lsp/tree-sitter-grammar-lsp-linux") == 1 then
 	vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		pattern = { "grammar.js", "*/corpus/*.txt" },
